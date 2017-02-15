@@ -54,7 +54,7 @@ class Tache
 	{
 		//j'utilise htmlentities et mysql_realescape ici pour pouvoir recuperer mon contenu d'origine a l'affichage car on doit se proteger contre les injections SQL quand on modifier la table
 		$pdo = Database::connect();
-		$sql = "INSERT INTO `tache`(`id`, `content`, `date`, `user_id`) VALUES (null, '".htmlentities(mysql_real_escape_string($this->content))."', '".$this->date."', '$this->userId')";
+		$sql = "INSERT INTO `tache`(`id`, `content`, `date`, `userId`) VALUES (null, '".htmlentities(mysql_real_escape_string($this->content))."', '".$this->date."', '$this->userId')";
 		$pdo->exec($sql);
 	}
 
