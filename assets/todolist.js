@@ -31,7 +31,7 @@ function	showAllTaches(){
 
 			tabTaches.forEach(function (tache){
 
-				/* templating de la conversation */
+				/* templating de la tache */
 				var elem = document.createElement('tr');
 	  			var todo = '<td>'+tache.content+'</td><td><button type="button" class="btn btn-primary">Modifier</button></td><td><button type="button" onClick="suppTache('+tache.id+', this.parentNode.parentNode.rowIndex)" class="btn btn-danger">Supprimer</button></td>';
 	  			elem.innerHTML = todo;
@@ -61,9 +61,7 @@ function	addTache(){
 			if(status.ajout == "ok"){
 				showAllTaches();
 			}
-		} /*else {
-			alert("[ERROR]: Une erreur est surevenue pendant la suppression de tache");
-		}*/
+		} 
 	};
 
 	xhr.open("POST", "addTache.php", true);
@@ -84,9 +82,7 @@ function	suppTache(idTache, tabRow){
 				document.getElementById("tabTaches").deleteRow(tabRow);
 				showAllTaches();
 			}
-		} /*else {
-			alert("[ERROR]: Une erreur est surevenue pendant la suppression de tache");
-		}*/
+		}
 	};
 
 	xhr.open("GET", "suppTache.php?tacheId="+idTache, true);
