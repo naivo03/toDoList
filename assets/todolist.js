@@ -24,9 +24,7 @@ function	showAllTaches(){
 	var xhr = getXMLHttpRequest();
 
 	//templating du haut de page
-	console.log("modification du haut de page");
 	var form = document.getElementById('tachePartForViews');
-	console.log(form);
 	if(form){
 		while (form.firstChild) form.removeChild(form.firstChild);
 
@@ -112,8 +110,6 @@ function updateTache(tacheId){
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200 ) {
-			console.log("on rentre dans update template");
-
 			var response = JSON.parse(xhr.response);
 			var entryTache = document.getElementById('tache');
  
@@ -130,8 +126,6 @@ function updateTache(tacheId){
 	  		var button = '<button type="button" onClick="updateBddTache('+tacheId+')" class="btn btn-success">Modifier</button>';
 	  		elem.innerHTML = button;
 
-			console.log(entryTache);
-
 			buttonModif.appendChild(elem);
 		    entryTache.appendChild(newContent);
 		}
@@ -142,8 +136,6 @@ function updateTache(tacheId){
 }
 
 function	updateBddTache(tacheId){
-	console.log("On va maintenant rentrez les nouvelles valeurs dans la bdd ainsi que retempletar comme au depart");
-
 	var tache = document.getElementById('tache').value;
 
 	/* Envoi en AJAX*/
@@ -156,7 +148,6 @@ function	updateBddTache(tacheId){
 		if (xhr.readyState == 4 && xhr.status == 200 ) {
 			var status = JSON.parse(xhr.response);
 			if(status.modif == "ok"){
-				console.log("modif ok");
 				showAllTaches();
 			}
 		} 

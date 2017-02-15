@@ -15,16 +15,9 @@
 <body>
 	<div class="container">
 		<h1>TO DO LIST</h1>
-		<form class="form-inline">
-			<div id="tachePart">
-				<div class="form-group" id="contentTache">
-			    	<p><label for="tache">Tache</label></p>
-			    	<textarea name="content" class="form-control" id="tache"></textarea>
-		  		</div>
-
-				<div id="buttonAjoutModif">
-				<p><button type="button" onClick="addTache()" class="btn btn-success">Creer</button></p>
-				</div>
+		<form class="form-inline" id="tachePartForViews">
+			<div>
+				
 			</div>
 		</form>
 
