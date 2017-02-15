@@ -20,15 +20,12 @@ function getXMLHttpRequest() {
 }
 
 function	showAllTaches(){
-	//console.log("on essaye d'afficher tous nos articles");
 
 	var xhr = getXMLHttpRequest();
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
 			var tabTaches = JSON.parse(xhr.response);
-			//console.log(tabTaches);
-
 			var allTaches = document.getElementById('Taches');
 			while (allTaches.firstChild) allTaches.removeChild(allTaches.firstChild);
 
@@ -49,21 +46,24 @@ function	showAllTaches(){
 }
 
 function	addTache(){
+	
 	var tache = document.getElementById('tache').value;
-
-	//console.log("voici la nouvelle tache: "+tache);
 
 	/* Envoi en AJAX*/
 
 	var xhr = getXMLHttpRequest();
 
 	xhr.onreadystatechange = function() {
-		var status = JSON.parse(xhr.response);
 
-		if (xhr.readyState == 4 && xhr.status == 200 && status.ajout == "ok") {
-			console.log("votre tache a ete ajouter");
-			showAllTaches();
-		}
+
+		if (xhr.readyState == 4 && xhr.status == 200 ) {
+			var status = JSON.parse(xhr.response);
+			if(status.ajout == "ok"){
+				showAllTaches();
+			}
+		} /*else {
+			alert("[ERROR]: Une erreur est surevenue pendant la suppression de tache");
+		}*/
 	};
 
 	xhr.open("POST", "addTache.php", true);
@@ -75,19 +75,18 @@ function	addTache(){
 
 function	suppTache(idTache, tabRow){
 
-	//console.log(idTache, tabRow);
-
 	var xhr = getXMLHttpRequest();
 
 	xhr.onreadystatechange = function() {
-		//console.log(xhr.response);
-		if (xhr.readyState == 4 && xhr.status == 200 && xhr.response) {
-				
-				var response = JSON.parse(xhr.response);
+		if (xhr.readyState == 4 && xhr.status == 200 ) {
+			var response = JSON.parse(xhr.response);
+			if(response.supp == "ok"){
 				document.getElementById("tabTaches").deleteRow(tabRow);
 				showAllTaches();
-				
-		}
+			}
+		} /*else {
+			alert("[ERROR]: Une erreur est surevenue pendant la suppression de tache");
+		}*/
 	};
 
 	xhr.open("GET", "suppTache.php?tacheId="+idTache, true);
